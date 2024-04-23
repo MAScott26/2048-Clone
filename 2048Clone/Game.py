@@ -42,23 +42,35 @@ class startScreen(simpleGE.Scene):
             self.response = "Play"
             self.stop()
             
+class Grid(simpleGE.Sprite):
+    def __init__(self, scene):
+        super().__init__(scene)
+        self.setImage("Grid.png")
+        self.x = 320
+        self.y = 240
+        
+            
 class Game(simpleGE.Scene):
     def __init__(self):
         super().__init__()
         self.setImage("Background.png")
         self.square = Square(self)
-        self.sprites = [self.square]
+        self.grid = Grid(self)
+        self.sprites = [self.grid, self.square]
         
 class Square(simpleGE.Sprite):
     def __init__(self, scene):
         super().__init__(scene)
-        self.setImage("TestIMG.png")
-        self.movespeed = 50
+        self.setImage("imgOne.png")
+        self.setSize(95, 95)
+        self.movespeed = 100
+        self.x = 170
+        self.y = 90
         self.keyDown = False
         self.squareState = {
             "ref" : ["image", "prev", "Next"],
-            1 : ["image", 1, 2],
-            2 : ["image", 2, 4],
+            1 : ["imgOne.png", 1, 2],
+            2 : ["imgTwo.png", 2, 4],
             4 : ["image", 4, 8],
             8 : ["image", 8, 16],
             16 : ["image", 16, 32],
@@ -73,29 +85,34 @@ class Square(simpleGE.Sprite):
         
     def process(self):
         if self.isKeyPressed(pygame.K_LEFT):
-            if self.keyDown == False:
-                self.x -= self.movespeed
-                self.keyDown = True
-            else:
-                self.keyDown = True
+            if self.x != 170:
+                
+                if self.keyDown == False:
+                    self.x -= self.movespeed
+                    self.keyDown = True
+                else:
+                    self.keyDown = True
         elif self.isKeyPressed(pygame.K_RIGHT):
-            if self.keyDown == False:
-                self.x += self.movespeed
-                self.keyDown = True
-            else:
-                self.keyDown = True
+            if self.x != 470:
+                if self.keyDown == False:
+                    self.x += self.movespeed
+                    self.keyDown = True
+                else:
+                    self.keyDown = True
         elif self.isKeyPressed(pygame.K_UP):
-            if self.keyDown == False:
-                self.y -= self.movespeed 
-                self.keyDown = True
-            else:
-                self.keyDown = True
+            if self.y != 90:
+                if self.keyDown == False:
+                    self.y -= self.movespeed 
+                    self.keyDown = True
+                else:
+                    self.keyDown = True
         elif self.isKeyPressed(pygame.K_DOWN):
-            if self.keyDown == False:
-                self.y += self.movespeed
-                self.keyDown = True
-            else:
-                self.keyDown = True
+            if self.y != 390:
+                if self.keyDown == False:
+                    self.y += self.movespeed
+                    self.keyDown = True
+                else:
+                        self.keyDown = True
         else:
             self.keyDown = False
             
