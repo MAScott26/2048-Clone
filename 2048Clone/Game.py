@@ -13,7 +13,10 @@ class startScreen(simpleGE.Scene):
         
         self.instructions = simpleGE.MultiLabel()
         self.instructions.textLines = [
-            "Message :) "]
+            "use the arrow keys to move all tiles ",
+            "get to 2048 to win",
+            "press up to play",
+            "press down to quit"]
         
         self.instructions.center = (320, 240)
         self.instructions.size = (550, 300)
@@ -148,7 +151,7 @@ class Square(simpleGE.Sprite):
                 if self.keyDown == False:
                     move = True
                     for i in range(3):
-                        for tile in reversed(self.scene.tiles):
+                        for tile in self.scene.tiles:
                             if tile.y + 100 == self.y and tile.x == self.x and tile.currState != self.currState:
                                 move = False
                         if move:
