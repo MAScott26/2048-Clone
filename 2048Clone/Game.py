@@ -62,8 +62,6 @@ class Game(simpleGE.Scene):
         for i in range(12):
             self.tiles.append(Square(self))
             
-            
-            
         """self.tiles.append(Square(self))
         self.square.currState = 1
         self.square.imgUpdate()
@@ -182,7 +180,6 @@ class Square(simpleGE.Sprite):
 def main():
     keepGoing = True
     score = 0
-    
     startMenu = startScreen(score)
     startMenu.start()
     while keepGoing:   
